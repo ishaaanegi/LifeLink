@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Organ Pledge Form</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
+    margin: 0;
+}
+
+header {
+    background: white;
+    padding: 15px 30px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.container {
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+h3 { margin-top: 0; }
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+/* Checkbox styling */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-item input {
+    width: auto;
+    margin: 0;
+}
+
+.btn {
+    background: #e65c2f;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #c94e26;
+}
+
+.success {
+    display: none;
+    background: #e6f4ea;
+    border: 1px solid #4caf50;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>LIFELINK</h2>
+</header>
+
+<div class="container">
+
+<div class="success" id="successBox">
+    <h3>✔ Pledge has successfully been registered!</h3>
+</div>
+
+<form id="pledgeForm">
+
+<div class="grid">
+
+<!-- Personal Details -->
+<div class="card">
+    <h3>Personal Details</h3>
+
+    <label>Name *</label>
+    <input type="text" id="name">
+
+    <label>Gender *</label>
+    <select id="gender">
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+    </select>
+
+    <label>DOB *</label>
+    <input type="date" id="dob">
+    <div class="error" id="dobErr"></div>
+
+    <label>Mobile *</label>
+    <input type="text" id="userMobile" maxlength="10">
+    <div class="error" id="userMobileErr"></div>
+
+    <label>Father's/Husband's Name *</label>
+    <input type="text" id="father">
+    <div class="error" id="fatherErr"></div>
+
+    <label>Mother's Name *</label>
+    <input type="text" id="mother">
+    <div class="error" id="motherErr"></div>
+</div>
+
+<!-- Pledge + Emergency -->
+<div class="card">
+    <h3>Pledge Details</h3>
+
+    <label>Blood Group</label>
+    <select id="blood">
+        <option value="">Select</option>
+        <option>O+</option>
+        <option>O-</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+    </select>
+
+    <label>Email</label>
+    <input type="email" id="email">
+
+    <hr>
+
+    <h3>Emergency Contact</h3>
+
+    <label>Name *</label>
+    <input type="text" id="contactName">
+    <div class="error" id="contactErr"></div>
+
+    <label>Mobile *</label>
+    <input type="text" id="contactMobile" maxlength="10">
+    <div class="error" id="mobileErr"></div>
+
+    <label>Relation *</label>
+    <select id="relation">
+        <option value="">Select</option>
+        <option>Father</option>
+        <option>Mother</option>
+        <option>Friend</option>
+        <option>Sibling</option>
+        <option>Spouse</option>
+    </select>
+    <div class="error" id="relationErr"></div>
+</div>
+
+<!-- Organs -->
+<div class="card">
+    <h3>Organs</h3>
+    <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox"><span>Liver</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Kidney</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Heart</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Lungs</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Intestine</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Pancreas</span></label>
+    </div>
+</div>
+
+<!-- Tissues -->
+<div class="card">
+    <h3>Tissues</h3>
+    <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox"><span>Bone</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Skin</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Cornea</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Heart Valve</span></label>
+    </div>
+</div>
+
+</div>
+
+<br>
+
+<label>
+<input type="checkbox" required> I agree to organ donation terms
+</label>
+
+<br><br>
+
+<button type="submit" class="btn">Register</button>
+
+</form>
+</div>
+
+<script>
+document.getElementById("pledgeForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let valid = true;
+
+    let dob = document.getElementById("dob").value;
+    let userMobile = document.getElementById("userMobile").value;
+    let father = document.getElementById("father").value;
+    let mother = document.getElementById("mother").value;
+    let contact = document.getElementById("contactName").value;
+    let mobile = document.getElementById("contactMobile").value;
+    let relation = document.getElementById("relation").value;
+
+    document.querySelectorAll(".error").forEach(e => e.innerText = "");
+
+    /* DOB validation (18+) */
+    if (!dob) {
+        document.getElementById("dobErr").innerText = "Required";
+        valid = false;
+    } else {
+        let today = new Date();
+        let birthDate = new Date(dob);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        if (age < 18) {
+            document.getElementById("dobErr").innerText = "Must be 18+";
+            valid = false;
+        }
+    }
+
+    /* User mobile validation */
+    if (!userMobile || userMobile.length !== 10 || isNaN(userMobile)) {
+        document.getElementById("userMobileErr").innerText = "Enter valid 10-digit number";
+        valid = false;
+    }
+
+    if (!father) {
+        document.getElementById("fatherErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (!mother) {
+        document.getElementById("motherErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (!contact) {
+        document.getElementById("contactErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
+        document.getElementById("mobileErr").innerText = "Invalid Mobile";
+        valid = false;
+    }
+
+    if (!relation) {
+        document.getElementById("relationErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (valid) {
+        document.getElementById("successBox").style.display = "block";
+        window.scrollTo(0,0);
+    }
+});
+</script>
+
+</body>
+</html>
