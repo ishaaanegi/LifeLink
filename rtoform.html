@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Driving Licence Application</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f3f6;
+    margin: 0;
+}
+
+header {
+    background: #002147;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.container {
+    width: 900px;
+    margin: 20px auto;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+h3 {
+    margin-top: 0;
+    color: #002147;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.checkbox-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-box input {
+    width: auto;
+    margin: 0;
+}
+
+.btn {
+    background: #f57c00;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.success {
+    display: none;
+    background: #e8f5e9;
+    border: 1px solid #4caf50;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    Driving Licence Application
+</header>
+
+<div class="container">
+
+<div class="success" id="successBox">
+    <h3>✔ Application Submitted Successfully</h3>
+</div>
+
+<form id="dlForm">
+
+<!-- Personal Details -->
+<div class="card">
+    <h3>Applicant Details</h3>
+
+    <div class="row">
+        <div>
+            <label>Full Name *</label>
+            <input type="text" id="name">
+        </div>
+
+        <div>
+            <label>Date of Birth *</label>
+            <input type="date" id="dob">
+            <div class="error" id="dobErr"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <label>Gender *</label>
+            <select id="gender">
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Mobile Number *</label>
+            <input type="text" id="mobile" maxlength="10">
+            <div class="error" id="mobileErr"></div>
+        </div>
+    </div>
+
+    <label>Blood Group</label>
+    <select id="blood">
+        <option value="">Select</option>
+        <option>O+</option>
+        <option>O-</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+    </select>
+
+    <label>Aadhaar Number *</label>
+    <input type="text" id="aadhaar" maxlength="12">
+    <div class="error" id="aadhaarErr"></div>
+
+    <label>Father's Name *</label>
+    <input type="text" id="father">
+    <div class="error" id="fatherErr"></div>
+
+    <label>Mother's Name *</label>
+    <input type="text" id="mother">
+    <div class="error" id="motherErr"></div>
+</div>
+
+<!-- Address -->
+<div class="card">
+    <h3>Address Details</h3>
+
+    <label>Full Address *</label>
+    <input type="text" id="address">
+
+    <div class="row">
+        <div>
+            <label>District *</label>
+            <input type="text" id="district">
+        </div>
+
+        <div>
+            <label>State *</label>
+            <input type="text" id="state">
+        </div>
+    </div>
+</div>
+
+<!-- Emergency -->
+<div class="card">
+    <h3>Emergency Contact</h3>
+
+    <label>Name *</label>
+    <input type="text" id="contactName">
+    <div class="error" id="contactErr"></div>
+
+    <label>Mobile *</label>
+    <input type="text" id="contactMobile" maxlength="10">
+    <div class="error" id="contactMobileErr"></div>
+
+    <label>Relation *</label>
+    <input type="text" id="relation">
+    <div class="error" id="relationErr"></div>
+</div>
+
+<!-- Organ Donation -->
+<div class="card">
+    <h3>Organ Donation (Optional)</h3>
+
+    <div class="checkbox-box">
+        <input type="checkbox" id="donor">
+        <label for="donor">I voluntarily agree to pledge my organs</label>
+    </div>
+</div>
+
+<br>
+
+<button type="submit" class="btn">Submit Application</button>
+
+</form>
+</div>
+
+<script>
+document.getElementById("dlForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let valid = true;
+
+    let dob = document.getElementById("dob").value;
+    let mobile = document.getElementById("mobile").value;
+    let aadhaar = document.getElementById("aadhaar").value;
+    let father = document.getElementById("father").value;
+    let mother = document.getElementById("mother").value;
+    let contact = document.getElementById("contactName").value;
+    let contactMobile = document.getElementById("contactMobile").value;
+    let relation = document.getElementById("relation").value;
+
+    document.querySelectorAll(".error").forEach(e => e.innerText = "");
+
+    if (!dob) {
+        document.getElementById("dobErr").innerText = "Required";
+        valid = false;
+    } else {
+        let today = new Date();
+        let birthDate = new Date(dob);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        if (age < 18) {
+            document.getElementById("dobErr").innerText = "Must be 18+";
+            valid = false;
+        }
+    }
+
+    if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
+        document.getElementById("mobileErr").innerText = "Enter valid 10-digit number";
+        valid = false;
+    }
+
+    if (!aadhaar || aadhaar.length !== 12 || isNaN(aadhaar)) {
+        document.getElementById("aadhaarErr").innerText = "Enter valid Aadhaar";
+        valid = false;
+    }
+
+    if (!father) {
+        document.getElementById("fatherErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (!mother) {
+        document.getElementById("motherErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (!contact) {
+        document.getElementById("contactErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (!contactMobile || contactMobile.length !== 10 || isNaN(contactMobile)) {
+        document.getElementById("contactMobileErr").innerText = "Invalid mobile";
+        valid = false;
+    }
+
+    if (!relation) {
+        document.getElementById("relationErr").innerText = "Required";
+        valid = false;
+    }
+
+    if (valid) {
+        document.getElementById("successBox").style.display = "block";
+        window.scrollTo(0,0);
+    }
+});
+</script>
+
+</body>
+</html>
