@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Organ Donation Acknowledgement</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+}
+
+/* Header */
+header {
+    background: #002147;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+}
+
+/* Container */
+.container {
+    width: 700px;
+    margin: 30px auto;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* ❤️ Heart icon */
+.heart {
+    font-size: 60px;
+    color: red;
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+.details {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.details span {
+    font-weight: bold;
+}
+
+/* Button */
+.btn {
+    margin-top: 20px;
+    background: #f57c00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    Organ Donation Acknowledgement
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<div class="heart">❤️</div>
+
+<h2>Thank You for Your Noble Contribution</h2>
+
+<p>Your organ donation pledge has been successfully registered.</p>
+
+<div class="details">
+    <p><span>Name:</span> <span id="name"></span></p>
+    <p><span>Date of Birth:</span> <span id="dob"></span></p>
+    <p><span>Mobile:</span> <span id="mobile"></span></p>
+    <p><span>Blood Group:</span> <span id="blood"></span></p>
+    <p><span>Status:</span> Registered Organ Donor</p>
+</div>
+
+<button class="btn" onclick="window.print()">Print Acknowledgement</button>
+
+</div>
+
+</div>
+
+<script>
+/* Dummy fallback data if nothing in localStorage */
+document.getElementById("name").innerText =
+    localStorage.getItem("name") || "Rahul Sharma";
+
+document.getElementById("dob").innerText =
+    localStorage.getItem("dob") || "1998-05-14";
+
+document.getElementById("mobile").innerText =
+    localStorage.getItem("mobile") || "9897027861";
+
+document.getElementById("blood").innerText =
+    localStorage.getItem("blood") || "B+";
+</script>
+
+</body>
+</html>
